@@ -6,5 +6,5 @@ Para utilizar **Jupyter Notebook** y considerar las dependencias del ambiente, s
 
 # client_secret.json
 
-El archivo **client_secret.json** es único. Se debe crear un **Service Account**, y una vez creado, se descargará el archivo de credenciales en GCP. Seguir instrucciones para crear [Service Account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatinganaccount).
+El archivo **client_secret.json** es único. Se debe crear un **Service Account** en GCP, y una vez creado, se descargará el archivo de credenciales. Seguir instrucciones para crear [Service Account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatinganaccount).
 
