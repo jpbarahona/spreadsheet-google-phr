@@ -1,26 +1,37 @@
-import gspread
+import json
 from oauth2client.service_account import ServiceAccountCredentials
-from googleapiclient import discovery
-from pprint import pprint
-import pandas as pd
+import gspread
+import pandas
 
-scope = ['https://www.googleapis.com/auth/drive.readonly']
-creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json',scope)
+config_file = open('./config.json','r')
+config = json.load(config_file)
+
+scope = config['scope']
+creds = ServiceAccountCredentials.from_json_keyfile_name(config['pathClientSecret'],scope)
 client = gspread.authorize(creds)
 
-sheet = client.open('Test SFSF Accesos')
-worksheet = sheet.worksheet('SFSF')
+sheet = client.open(config['archivo']['credencialesSFSF']['sheet'])
+worksheet = sheet.worksheet(config['archivo']['credencialesSFSF']['workSheet'])
 
 wsheet = worksheet.get_all_values()
-df = pd.DataFrame.from_records(wsheet[1:])
+
+# header -> primera fila es un comentario
+df = pandas.DataFrame.from_records(wsheet[1:])
 
 # .values -> array o matriz
 header = (df.loc[df[0] == 'Cliente']).values[0]
 dataSet = (df.loc[df[0] != 'Cliente']).values
 
-dff = pd.DataFrame.from_records(dataSet, columns = header)
+dff = pandas.DataFrame.from_records(dataSet, columns = header)
 
-cliente = dff.Cliente == 'Arauco'
-ambiente = dff['Tipo Acceso'] == 'DEV'
+def BuscarCredenciales (cliente, ambiente = ''):
+	cliente = dff.Cliente == cliente
 
-dff.loc[cliente & ambiente]
+	config.close()
+
+	if (ambiente != ''):
+		ambiente = dff['Tipo Acceso'] == ambiente
+
+		return dff.loc[cliente & ambiente]
+	else:
+		return dff.loc[cliente]
