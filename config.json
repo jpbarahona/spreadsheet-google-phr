@@ -1,0 +1,10 @@
+{
+	"scope": ["https://www.googleapis.com/auth/drive.readonly"],
+	"pathClientSecret": "./client_secret.json",
+	"archivo":{
+		"credenciales":{
+			"sheet": "Test SFSF Accesos",
+			"workSheet": "SFSF"
+		}
+	}
+}
