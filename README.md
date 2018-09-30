@@ -8,3 +8,6 @@ Para utilizar **Jupyter Notebook** y considerar las dependencias del ambiente, s
 
 El archivo **client_secret.json** es único. Se debe crear un **Service Account** asociado a un proyecto en GCP, y una vez creado, se descargará el archivo de credenciales. Seguir instrucciones para crear [Service Account](https://developers.google.com/hangouts/chat/how-tos/service-accounts#creating_and_using_a_service_account).
 
+# Environment Variables
+
+Seguir el siguiente [link](https://stackoverflow.com/questions/51227159/how-do-i-set-environment-variables-in-pipenv) de github 
